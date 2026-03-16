@@ -56,7 +56,11 @@ pip install -r requirements.txt
 ## Ejecución
 
 ```bash
-# Iniciar servidor
+# Activar entorno virtual
+source venv/bin/activate  # Linux/Mac
+# venv\Scripts\activate   # Windows
+
+# Iniciar servidor con uvicorn (recomendado)
 uvicorn main:app --reload
 
 # O ejecutar directamente
@@ -64,6 +68,20 @@ python main.py
 ```
 
 El backend estará disponible en: `http://localhost:8000`
+
+**Comandos completos:**
+
+```bash
+# Linux/Mac
+cd /ruta/al/proyecto
+source venv/bin/activate
+uvicorn main:app --reload
+
+# Windows
+cd C:\ruta\al\proyecto
+venv\Scripts\activate
+uvicorn main:app --reload
+```
 
 ## Tests
 
