@@ -9,7 +9,7 @@ function App() {
   const [message, setMessage] = useState('')
   const [downloadUrl, setDownloadUrl] = useState(null)
 
-  const API_URL = 'http://localhost:8000'
+  const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000'
 
   const handleSubmit = async (e) => {
     e.preventDefault()
