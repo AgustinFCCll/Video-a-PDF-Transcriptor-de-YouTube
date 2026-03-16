@@ -1,38 +1,30 @@
-from fastapi import FastAPI, HTTPException
-from fastapi.responses import FileResponse
-from fastapi.middleware.cors import CORSMiddleware
-from fastapi.staticfiles import StaticFiles
 import os
 import sys
+from pathlib import Path
 
-sys.path.insert(0, os.path.dirname(__file__))
+# Add project root to path
+project_root = Path(__file__).parent
+sys.path.insert(0, str(project_root))
 
-from app.routes.transcribe import router as transcribe_router
+from fastapi import FastAPI, HTTPException
+from fastapi.responses import FileResponse
 
-app = FastAPI(
-    title="Video a PDF - Transcriptor de YouTube",
-    description="API para convertir videos de YouTube a PDF o HTML usando subtítulos",
-    version="1.0.0",
-    docs_url="/docs",
-    redoc_url="/redoc",
-    openapi_url="/openapi.json"
-)
+from app.core import create_app
+from app.routes import transcribe
 
-app.include_router(transcribe_router)
+app = create_app()
+
+app.include_router(transcribe.router)
 
 
 @app.get("/")
 async def root():
-    return {
-        "message": "Video a PDF API",
-        "docs": "/docs",
-        "health": "/health"
-    }
+    return {"message": "Video a PDF API", "docs": "/docs"}
 
 
-@app.get("/favicon.ico")
-async def favicon():
-    return {"message": "No favicon"}
+@app.get("/health")
+async def health_check():
+    return {"status": "ok"}
 
 
 @app.get("/download/{filename}")
@@ -41,19 +33,10 @@ async def download_file(filename: str):
     if not os.path.exists(file_path):
         raise HTTPException(status_code=404, detail="Archivo no encontrado")
     
-    media_type = "text/html" if filename.endswith('.html') else "application/pdf"
+    media_type = "text/html" if filename.endswith(".html") else "application/pdf"
     return FileResponse(file_path, media_type=media_type, filename=filename)
 
 
-@app.get("/health")
-async def health_check():
-    return {"status": "ok"}
-
-
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=["*"],
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
-)
+if __name__ == "__main__":
+    import uvicorn
+    uvicorn.run(app, host="0.0.0.0", port=8000)
