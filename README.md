@@ -10,6 +10,11 @@ Convierte videos de YouTube en documentos PDF o HTML usando subtítulos automát
 - Interfaz moderna con diseño responsive y efectos visuales
 - API REST con FastAPI
 
+## Imagen
+
+<img width="1300" height="688" alt="Captura desde 2026-03-16 20-48-11" src="https://github.com/user-attachments/assets/776ebbdd-11aa-4174-8db1-576d7c2fdd98" />
+
+
 ## Tech Stack
 
 - **Backend**: FastAPI + Python
