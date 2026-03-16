@@ -1,6 +1,6 @@
 # Video a PDF - Transcriptor de YouTube
 
-Convierte videos de YouTube en documentos PDF o HTML utilizando los subtítulos automáticos disponibles.
+Convierte videos de YouTube en documentos PDF o HTML utilizando los subtítulos automáticos disponibles. Es importante destacar, que en caso de que el video no tenga traduccion automatica de Español a otro idioma, no se generara la transcripcion 
 
 ## Características
 
@@ -117,7 +117,6 @@ Video-a-PDF-Transcriptor-de-YouTube/
 ├── venv/                   # Entorno virtual Python
 ├── scripts/                # Scripts CLI
 ├── README.md
-└── README.txt
 ```
 
 ## Tests
