@@ -21,6 +21,20 @@ app = FastAPI(
 app.include_router(transcribe_router)
 
 
+@app.get("/")
+async def root():
+    return {
+        "message": "Video a PDF API",
+        "docs": "/docs",
+        "health": "/health"
+    }
+
+
+@app.get("/favicon.ico")
+async def favicon():
+    return {"message": "No favicon"}
+
+
 @app.get("/download/{filename}")
 async def download_file(filename: str):
     file_path = os.path.join("outputs", filename)
