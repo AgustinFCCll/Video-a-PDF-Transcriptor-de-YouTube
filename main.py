@@ -1,6 +1,7 @@
 from fastapi import FastAPI, HTTPException
 from fastapi.responses import FileResponse
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.staticfiles import StaticFiles
 import os
 import sys
 
@@ -8,7 +9,14 @@ sys.path.insert(0, os.path.dirname(__file__))
 
 from app.routes.transcribe import router as transcribe_router
 
-app = FastAPI(title="Video a PDF API")
+app = FastAPI(
+    title="Video a PDF - Transcriptor de YouTube",
+    description="API para convertir videos de YouTube a PDF o HTML usando subtítulos",
+    version="1.0.0",
+    docs_url="/docs",
+    redoc_url="/redoc",
+    openapi_url="/openapi.json"
+)
 
 app.include_router(transcribe_router)
 
