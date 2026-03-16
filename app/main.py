@@ -1,41 +1,13 @@
 from fastapi import FastAPI, HTTPException
 from fastapi.responses import FileResponse
 from fastapi.middleware.cors import CORSMiddleware
-from pydantic import BaseModel
-import sys
 import os
 
-sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..'))
-
-from scripts.video_a_pdf import process_video
+from app.routes.transcribe import router as transcribe_router
 
 app = FastAPI(title="Video a PDF API")
 
-
-class VideoRequest(BaseModel):
-    url: str
-    lang: str = "es"
-    as_html: bool = False
-
-
-@app.post("/convert")
-async def convert_video(request: VideoRequest):
-    try:
-        result = process_video(
-            url=request.url,
-            lang=request.lang,
-            as_html=request.as_html
-        )
-
-        return {
-            "success": True,
-            "message": f"{result['file_type'].upper()} generado exitosamente",
-            "file_path": result["output_path"],
-            "file_size": result["file_size"]
-        }
-
-    except Exception as e:
-        raise HTTPException(status_code=500, detail=str(e))
+app.include_router(transcribe_router)
 
 
 @app.get("/download/{filename}")

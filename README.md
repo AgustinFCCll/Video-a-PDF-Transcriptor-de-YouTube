@@ -96,6 +96,37 @@ El frontend estará disponible en: `http://localhost:5173`
 ```
 Video-a-PDF-Transcriptor-de-YouTube/
 ├── app/                    # Backend FastAPI
+│   ├── __init__.py
+│   ├── main.py             # Punto de entrada
+│   ├── routes/             # Rutas de la API
+│   │   ├── __init__.py
+│   │   └── transcribe.py
+│   ├── services/           # Lógica de negocio
+│   │   ├── __init__.py
+│   │   └── video_service.py
+│   └── models/             # Modelos de datos
+│       ├── __init__.py
+│       └── request_models.py
+├── frontend/               # Aplicación React
+├── tests/                  # Tests
+├── outputs/                # Archivos generados
+├── venv/                   # Entorno virtual Python
+├── scripts/                # Scripts CLI
+├── README.md
+└── README.txt
+```
+
+## Tests
+
+```bash
+# Instalar pytest
+pip install pytest httpx
+
+# Ejecutar tests
+pytest tests/ -v
+```
+Video-a-PDF-Transcriptor-de-YouTube/
+├── app/                    # Backend FastAPI
 │   ├── main.py             # Punto de entrada
 │   ├── routes/             # Rutas de la API
 │   ├── services/           # Lógica de negocio
