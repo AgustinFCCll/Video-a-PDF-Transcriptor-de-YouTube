@@ -7,7 +7,7 @@ Convierte videos de YouTube en documentos PDF o HTML usando subtítulos automát
 - Extracción de subtítulos de videos de YouTube
 - Generación de documentos PDF o HTML
 - Soporte múltiples idiomas (Español, Inglés, Portugués, Francés, Alemán)
-- Interfaz moderna con diseño glassmorphism (frontend)
+- Interfaz moderna con diseño responsive y efectos visuales
 - API REST con FastAPI
 
 ## Tech Stack
@@ -15,7 +15,7 @@ Convierte videos de YouTube en documentos PDF o HTML usando subtítulos automát
 - **Backend**: FastAPI + Python
 - **Video Processing**: yt-dlp
 - **Document Generation**: Pandoc
-- **Frontend**: React + Vite (en carpeta `frontend/`)
+- **Frontend**: React + Vite + Tailwind CSS
 
 ## Estructura del Proyecto (Arquitectura Limpia)
 
