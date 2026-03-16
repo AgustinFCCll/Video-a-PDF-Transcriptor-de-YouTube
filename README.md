@@ -10,6 +10,10 @@ Convierte videos de YouTube en documentos PDF o HTML utilizando los subtítulos 
 - Interfaz moderna con diseño glassmorphism
 - Fondo animado con gradientes multicolores y textura noise
 
+## Imagen
+<img width="1308" height="700" alt="imagen" src="https://github.com/user-attachments/assets/9d9fea3a-b142-4651-8160-34c6e123a7c1" />
+
+
 ## Tech Stack
 
 ### Frontend
