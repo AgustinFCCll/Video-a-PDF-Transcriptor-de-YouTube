@@ -9,7 +9,7 @@ function App() {
   const [message, setMessage] = useState('')
   const [downloadUrl, setDownloadUrl] = useState(null)
 
-  const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000'
+  const API_URL = ''
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -32,7 +32,7 @@ function App() {
         setStatus('success')
         setMessage(data.message)
         const filename = data.file_path.split('/').pop()
-        setDownloadUrl(`${API_URL}/download/${filename}`)
+        setDownloadUrl(`/download/${filename}`)
       } else {
         setStatus('error')
         setMessage(data.detail || 'Error al procesar el video')
