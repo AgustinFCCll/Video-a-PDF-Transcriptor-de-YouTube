@@ -53,9 +53,11 @@ cd Video-a-PDF-Transcriptor-de-YouTube
 python -m venv venv
 source venv/bin/activate  # Linux/Mac
 # venv\Scripts\activate   # Windows
+# .venv\Scripts\activate  # Windows/PowerShell
 
 # Instalar dependencias
 pip install -r requirements.txt
+Instalar pandoc en caso de que sea en windows ---> https://github.com/jgm/pandoc/releases/tag/3.9
 ```
 
 ## Ejecución
