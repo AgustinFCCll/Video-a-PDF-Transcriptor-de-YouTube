@@ -81,3 +81,14 @@ def test_video_service_initialization():
 def test_root_endpoint(client):
     response = client.get("/")
     assert response.status_code == 200
+
+
+def test_extract_video_id():
+    from app.services.video_service import extract_video_id
+    
+    assert extract_video_id("https://youtube.com/watch?v=dQw4w9WgXcQ") == "dQw4w9WgXcQ"
+    assert extract_video_id("https://youtu.be/dQw4w9WgXcQ") == "dQw4w9WgXcQ"
+    assert extract_video_id("https://youtube.com/embed/dQw4w9WgXcQ") == "dQw4w9WgXcQ"
+    
+    with pytest.raises(ValueError):
+        extract_video_id("invalid_url")

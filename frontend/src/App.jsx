@@ -31,7 +31,7 @@ function App() {
       if (response.ok) {
         setStatus('success')
         setMessage(data.message)
-        const filename = data.file_path.split('/').pop()
+        const filename = data.file_path.split(/[/\\]/).pop()
         setDownloadUrl(`/download/${filename}`)
       } else {
         setStatus('error')

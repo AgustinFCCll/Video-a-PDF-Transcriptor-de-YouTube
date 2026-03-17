@@ -31,16 +31,16 @@ def get_video_title(url: str) -> str:
 
 
 def get_subtitles(url: str, lang: str = "es", use_auto: bool = True) -> str:
-    with tempfile.TemporaryDirectory() as work_dir:
+    work_dir = tempfile.mkdtemp()
+    try:
         cmd = [
             'yt-dlp',
             '--skip-download',
-            '--write-auto-subs',
+            '--write-subs' if not use_auto else '--write-auto-subs',
             '--sub-lang', lang,
-            '--output', os.path.join(work_dir, 'subs'),
+            '--output', os.path.join(work_dir, 'subs.%(ext)s'),
+            url
         ]
-        
-        cmd.append(url)
         
         result = subprocess.run(cmd, capture_output=True, text=True, timeout=120)
         
@@ -51,12 +51,15 @@ def get_subtitles(url: str, lang: str = "es", use_auto: bool = True) -> str:
         
         if not subtitle_files:
             raise RuntimeError(f"No se encontraron subtítulos en {lang}. "
-                               f"Puede que el video no tenga subtitulos automaticos en este idioma")
+                               f"Puede que el video no tenga subtítulos en este idioma")
         
         subtitle_file = os.path.join(work_dir, subtitle_files[0])
         
         with open(subtitle_file, 'r', encoding='utf-8') as f:
             return f.read()
+    finally:
+        import shutil
+        shutil.rmtree(work_dir, ignore_errors=True)
 
 
 def srt_to_markdown(srt_content: str) -> str:
@@ -160,7 +163,7 @@ class VideoService:
         output_file = generate_pdf(md, output_path, as_html, title=video_title)
         
         return {
-            "output_path": output_file,
+            "output_path": output_file.replace("\\", "/"),
             "file_size": os.path.getsize(output_file),
             "file_type": "html" if output_file.endswith('.html') else "pdf"
         }

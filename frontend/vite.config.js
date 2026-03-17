@@ -7,9 +7,21 @@ export default defineConfig({
   server: {
     port: 5173,
     proxy: {
-      '/convert': 'http://localhost:8000',
-      '/download': 'http://localhost:8000',
-      '/health': 'http://localhost:8000',
+      '/convert': {
+        target: 'http://localhost:8000',
+        changeOrigin: true,
+        rewrite: (path) => path
+      },
+      '/download': {
+        target: 'http://localhost:8000',
+        changeOrigin: true,
+        rewrite: (path) => path
+      },
+      '/health': {
+        target: 'http://localhost:8000',
+        changeOrigin: true,
+        rewrite: (path) => path
+      },
     }
   }
 })
