@@ -13,7 +13,7 @@ Convierte videos de YouTube en documentos PDF o HTML usando subtítulos automát
 
 ## Imagen
 
-<img width="1300" height="688" alt="Captura desde 2026-03-16 20-48-11" src="https://github.com/user-attachments/assets/776ebbdd-11aa-4174-8db1-576d7c2fdd98" />
+<img width="1497" height="824" alt="image" src="https://github.com/user-attachments/assets/015b64db-4344-4879-8a33-4f4e96a6dfa1" />
 
 
 ## Tech Stack
